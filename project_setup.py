@@ -70,6 +70,6 @@ def create_project_structure(root_dir):
                 (root_dir / key).mkdir(parents=True, exist_ok=True)
 
 if __name__ == '__main__':
-    root_dir = 'my_project'
+    root_dir = ""
     create_project_structure(root_dir)
     print(f"Project structure created at {root_dir}")
