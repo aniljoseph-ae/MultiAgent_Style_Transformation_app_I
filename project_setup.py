@@ -2,13 +2,21 @@ import pathlib
 
 def create_dir_structure(base_dir, structure):
     for key, value in structure.items():
-        dir_path = base_dir / key
-        dir_path.mkdir(parents=True, exist_ok=True)
+        path = base_dir / key
         if isinstance(value, dict):
-            create_dir_structure(dir_path, value)
+            path.mkdir(parents=True, exist_ok=True)
+            create_dir_structure(path, value)
         elif isinstance(value, list):
+            path.mkdir(parents=True, exist_ok=True)
             for file in value:
-                (dir_path / file).touch(exist_ok=True)
+                (path / file).touch(exist_ok=True)
+        else:
+            if value is None:
+                if key.endswith('.py') or key.endswith('.json') or key.endswith('.txt') or key.endswith('.md') or key.endswith('.yml'):
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    path.touch(exist_ok=True)
+                else:
+                    path.mkdir(parents=True, exist_ok=True)
 
 def create_project_structure(root_dir):
     root_dir = pathlib.Path(root_dir)
@@ -59,17 +67,9 @@ def create_project_structure(root_dir):
         'README.md': None,
         'project_setup.py': None
     }
-
-    for key, value in project_structure.items():
-        if isinstance(value, dict):
-            create_dir_structure(root_dir, {key: value})
-        else:
-            if key.endswith('.py') or key.endswith('.json') or key.endswith('.txt') or key.endswith('.md'):
-                (root_dir / key).touch(exist_ok=True)
-            else:
-                (root_dir / key).mkdir(parents=True, exist_ok=True)
+    create_dir_structure(root_dir, project_structure)
 
 if __name__ == '__main__':
-    root_dir = ""
+    root_dir = pathlib.Path.cwd()
     create_project_structure(root_dir)
     print(f"Project structure created at {root_dir}")
