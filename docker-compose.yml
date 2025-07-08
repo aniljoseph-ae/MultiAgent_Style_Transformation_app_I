@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: content-transformer:latest
     container_name: content-transformer
     ports:
@@ -10,6 +12,8 @@ services:
     environment:
       - ULTRASAFE_API_KEY=${ULTRASAFE_API_KEY}
       - ULTRASAFE_BASE_URL=${ULTRASAFE_BASE_URL}
+      - CHROMA_DB_PATH=/app/chroma_db
+      - OPENAI_TELEMETRY_DISABLE=1
     volumes:
       - ./data:/app/data
       - ./chroma_db:/app/chroma_db
