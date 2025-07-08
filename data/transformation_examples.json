@@ -1,0 +1,14 @@
+[
+    {
+        "type": "example",
+        "style": "formal",
+        "format": "markdown",
+        "content": "## Original Content\nHello! Here's some text.\n## Transformed Content\nGreetings, this document presents the provided text in a formal manner."
+    },
+    {
+        "type": "example",
+        "style": "technical",
+        "format": "html",
+        "content": "<h1>Original</h1><p>System works fine.</p><h1>Transformed</h1><p>The system operates within specified parameters.</p>"
+    }
+]
