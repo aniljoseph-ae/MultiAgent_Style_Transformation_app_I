@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    image: content-transformer:latest
+    container_name: content-transformer
+    ports:
+      - "8000:8000"
+    environment:
+      - ULTRASAFE_API_KEY=${ULTRASAFE_API_KEY}
+      - ULTRASAFE_BASE_URL=${ULTRASAFE_BASE_URL}
+    volumes:
+      - ./data:/app/data
+      - ./chroma_db:/app/chroma_db
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    restart: unless-stopped
