@@ -1,0 +1,14 @@
+[
+    {
+        "type": "style_guide",
+        "style": "formal",
+        "format": "markdown",
+        "content": "# Formal Style Guide\nUse professional language, avoid contractions, and maintain a neutral tone. Structure content with clear headings and paragraphs."
+    },
+    {
+        "type": "style_guide",
+        "style": "casual",
+        "format": "html",
+        "content": "<h1>Casual Style Guide</h1><p>Keep it friendly and conversational. Use contractions and simple sentences.</p>"
+    }
+]
